@@ -5,11 +5,10 @@ import { OverridesService } from './overrides.service';
   selector: 'app-overrides',
   templateUrl: './overrides.component.html',
   styleUrls: ['./overrides.component.scss'],
-  providers: [OverridesService]
+  providers: [OverridesService],
 })
 export class OverridesComponent {
   ticker$ = this.service.tick$;
 
-  constructor(private readonly service: OverridesService) { }
-
+  constructor(private readonly service: OverridesService) {}
 }
