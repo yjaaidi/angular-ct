@@ -38,8 +38,12 @@ export function bootstrapModule<T extends object>(
     testModuleMetaData.imports = [];
   }
 
-  testModuleMetaData.declarations.push(component);
-  testModuleMetaData.imports.push(CommonModule);
+  testModuleMetaData.declarations.push(component)
+
+  if (!testModuleMetaData.imports.includes(CommonModule)) {
+    testModuleMetaData.imports.push(CommonModule);
+  }
+
   return testModuleMetaData;
 }
 
