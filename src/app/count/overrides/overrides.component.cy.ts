@@ -24,13 +24,17 @@ describe('OverridesComponent', () => {
   });
 
   it('increments every second', () => {
+    cy.clock();
+
     cy.mount(OverridesComponent);
-    cy.get('p').contains('overrides works ');
-    cy.wait(1000);
-    cy.get('p').contains('overrides works 0');
-    cy.wait(1000);
-    cy.get('p').contains('overrides works 1');
-    cy.wait(4000);
-    cy.get('p').contains('overrides works 5');
+
+    setTimeout(() => console.log('5 seconds later???'), 5000);
+
+    cy.tick(5000); // previous console.log should appear now but it doesn't work
+
+    console.log(Date.now()); // returns 5000 intead of (initial new Date()) + 5000;
+
+    cy.then(() => console.log(new Date(), Date.now()));
+    cy.get('p').should('have.text', 'overrides works 5');
   });
 });
